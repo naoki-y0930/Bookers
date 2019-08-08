@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <!--後でbootstrap追加-->
+    <header>
+      <% if user_signed_in? %>
+      <ul>
+        <li><a href="#">Home後でリンク</a></li>
+        <li><%= link_to "Users後で", '#' %></li>
+        <li><a href="#">Books後で</a></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        </ul>
+        <% else %>
+        <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li><%= link_to "sign up", new_user_registration_path %></li>
+        <li><%= link_to "login", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>
