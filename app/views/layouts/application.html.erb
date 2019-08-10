@@ -14,7 +14,7 @@
     <header>
       <% if user_signed_in? %>
       <ul>
-        <li><a href="#">Home後でリンク</a></li>
+        <li><%= link_to 'Home', user_path(current_user.id) %></li>
         <li><%= link_to "Users後で", '#' %></li>
         <li><a href="#">Books後で</a></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

@@ -1,20 +1,27 @@
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
+
 <h1>Book detail</h1>
 
 <table>
   <thead>
     <tr>
+      <th>user</th>
       <th>title</th>
       <th>opinion</th>
     </tr>
   </thead>
 <tbody>
-  <% book.each do |book| %>
   <tr>
-    <td><%= book.title %></td>
-    <td><%= book.body %></td>
+    <td>user後で</td>
+    <td><%= @book.title %></td>
+    <td><%= @book.body %></td>
     <td>edit</td>
-    <td>destroy</td>
+    <% if @book.user == current_user %>
+    <td><%= link_to 'Destroy', book_path(@book), method: :delete,
+      data:{confirm: 'Are you sure?'} %></td>
+      <% end %>
   </tr>
-  <% end %>
 </tbody>
 </table>
