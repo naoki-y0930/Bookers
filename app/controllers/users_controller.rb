@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
-    # @books = @user.books
-    @books = Book.all
+    @books = @user.books
+    @book = Book.new
     #余裕があればページング機能追加する
     # @users = @user.books.page(params[:id]).reverse_order
   end

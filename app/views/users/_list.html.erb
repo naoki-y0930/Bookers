@@ -7,4 +7,6 @@
 <%= user.introduction %>
 <% if user.id == current_user.id %>
 <%= link_to 'Profile edit', edit_user_path(user) %>
+<% else %>
+<%= link_to 'Profile edit', user_path(current_user) %>
 <% end %>
