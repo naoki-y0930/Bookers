@@ -5,8 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+  attachment :profile_image
+  validates :name, length: {in: 2..20}
+  validates :introduction, length: {in: 0..50}
+  # validates :introduction, presence: true, length: {maximum: 50}
 
-  
+
          def email_required?
            false
          end
