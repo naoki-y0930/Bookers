@@ -1,12 +1,14 @@
-<h1>User info</h1>
+ <h1>User info</h1>
 
-<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.png" %>
-<h4>name</h4>
-<%= user.name %>
-<h4>Introduction</h4>
-<%= user.introduction %>
-<% if user.id == current_user.id %>
-<%= link_to 'Profile edit', edit_user_path(user) %>
-<% else %>
-<%= link_to 'Profile edit', user_path(current_user) %>
-<% end %>
+ <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.png" %>
+  <h4>name</h4>
+ <%= user.name %>
+  <h4>Introduction</h4>
+   <div class="introduction">
+ <%= user.introduction %>
+   </div>
+ <% if user.id == current_user.id %>
+ <%= link_to 'ProfileEdit', edit_user_path(user), class: "btn btn-default glyphicon glyphicon-wrench p-3 mb-2 bg-success text-white" %>
+   <% else %>
+ <%= link_to 'Transition to my page', user_path(current_user), class: "btn btn-default p-3 mb-2 bg-success text-white" %>
+ <% end %>
