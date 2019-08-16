@@ -7,8 +7,7 @@
    <div class="introduction">
  <%= user.introduction %>
    </div>
- <% if user.id == current_user.id %>
+
+
+
  <%= link_to 'ProfileEdit', edit_user_path(user), class: "btn btn-default glyphicon glyphicon-wrench p-3 mb-2 bg-success text-white" %>
-   <% else %>
- <%= link_to 'Transition to my page', user_path(current_user), class: "btn btn-default p-3 mb-2 bg-success text-white" %>
- <% end %>
