@@ -1,24 +1,27 @@
-# README
+【Bookersアプリ】
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+読んだ本の感想を投稿するサイトです。
+自分が読んだお気に入りの本や他の人に教えたい本などを、
+感想を書いて投稿して他のユーザーが閲覧することができます。
+また、他のユーザーが投稿した本の感想を見ることができます。
+本が好きな人はもちろん、普段本を読まない人もユーザーの
+感想を読むことで、興味をもつ本を見つけることが
+できるかもしれません。
 
-Things you may want to cover:
+◇Bookersの機能
+・ユーザー登録機能（sign_up sign_in）
+・ユーザープロフィール編集機能
+・本のタイトル、感想の投稿機能
+・投稿の編集、削除機能
+・全ユーザーの投稿閲覧
+・Bookersの全ユーザー閲覧機能
 
-* Ruby version
+◇Bookers使用言語、フレームワーク
+・RubyOnRails
+・Bootstrap
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+◇開発環境
+・bootstrap-sass 3.3.6
+・Rails 5.2.3
+・vagrant version.2.2.4
+・VirtualBox.6.0.6
