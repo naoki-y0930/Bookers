@@ -1,33 +1,42 @@
-<% if flash[:notice] %>
-<p><%= flash[:notice] %></p>
-<% end %>
+  <% if flash[:notice] %>
+   <p><%= flash[:notice] %></p>
+  <% end %>
 
-<%= render 'users/list', user: @user %>
-<%= render 'books/list', book: @books %>
+  <div class="container">
+   <div class="row">
+    <div class="col-lg-4 col-sm-4 col-xs-4">
+     <%= render 'users/list', user: @user %>
+     <%= render 'books/list', book: @books %>
+    </div>
 
-<h1>Book detail</h1>
+   <div class="col-lg-8 col-sm-8 col-xs-8">
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>user</th>
-      <th>title</th>
-      <th>opinion</th>
-    </tr>
-  </thead>
-<tbody>
-  <tr>
-    <td><%= link_to (attachment_image_tag @book.user, :profile_image, :fill, 100, 100, fallback: "no_image.png"), user_path(@user) %>
-    <br><%= link_to @book.user.name, user_path(@user), class: "label label-primary" %></td>
-    <td><%= @book.title %></td>
-    <td><%= @book.body %></td>
-    <% if current_user.id == @book.user_id %>
-    <td><%= link_to 'edit', edit_book_path(@book) %></td>
-    <td><%= link_to 'Destroy', book_path(@book), method: :delete,
-      data:{confirm: 'Are you sure?'} %></td>
-<% else %>
+    <h1>Book detail</h1>
 
-<% end %>
-  </tr>
-</tbody>
-</table>
+     <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>user</th>
+          <th>title</th>
+          <th>opinion</th>
+        </tr>
+      </thead>
+     <tbody>
+      <tr>
+        <td><%= link_to (attachment_image_tag @book.user, :profile_image, :fill, 100, 100, fallback: "no_image.png"), user_path(@user) %>
+        <br><%= link_to @book.user.name, user_path(@user), class: "label label-primary" %></td>
+        <td><%= @book.title %></td>
+        <td><%= @book.body %></td>
+         <% if current_user.id == @book.user_id %>
+        <td><%= link_to 'edit', edit_book_path(@book), class: "btn btn-success" %></td>
+        <td><%= link_to 'Destroy', book_path(@book), method: :delete,
+          data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %></td>
+        <% else %>
+
+       <% end %>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+ </div>
