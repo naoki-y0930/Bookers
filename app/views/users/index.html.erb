@@ -22,7 +22,7 @@
           <tr>
             <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.png" %></td>
             <td><%= user.name %></td>
-            <td><%= link_to 'show', user %></td>
+            <td><%= link_to 'show', user, class: "btn btn-primary" %></td>
            <% end %>
           </tr>
         </tbody>

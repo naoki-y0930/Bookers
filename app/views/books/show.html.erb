@@ -4,12 +4,12 @@
 
   <div class="container">
    <div class="row">
-    <div class="col-lg-4 col-sm-4 col-xs-4">
+    <div class="col-lg-4 col-sm-4 open">
      <%= render 'users/list', user: @user %>
      <%= render 'books/list', book: @books %>
     </div>
 
-   <div class="col-lg-8 col-sm-8 col-xs-8">
+   <div class="col-lg-8 col-sm-8">
 
     <h1>Book detail</h1>
 
@@ -28,15 +28,57 @@
         <td><%= @book.title %></td>
         <td><%= @book.body %></td>
          <% if current_user.id == @book.user_id %>
-        <td><%= link_to 'edit', edit_book_path(@book), class: "btn btn-success" %></td>
-        <td><%= link_to 'Destroy', book_path(@book), method: :delete,
-          data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %></td>
+        <td><%= link_to 'edit', edit_book_path(@book), class: "btn btn-success rows" %><br>
+        <%= link_to 'Destroy', book_path(@book), method: :delete,
+          data:{confirm: 'Are you sure?'}, class: "btn btn-danger rows" %></td>
         <% else %>
-
        <% end %>
       </tr>
      </tbody>
     </table>
+    <% if @book.user == current_user %>
+
+    <% else %>
+    <%= form_for [@book, @book_comment] do |f| %>
+    <%= f.text_area :comment, rows: '3', placeholder: "コメント" %>
+    <br>
+    <%= f.submit "Create Comment", class: "btn btn-primary" %>
+    <% end %>
+   <% end %>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @book.book_comments.each do |book_comment| %>
+        <% if book_comment.user == current_user %>
+        <tr>
+          <td><%= book_comment.user.name %></td>
+          <td><%= book_comment.comment %></td>
+          <td><%= link_to 'Edit', edit_book_book_comment_path(@book, book_comment), class: "btn btn-success" %></td>
+          <td><%= link_to 'Destroy', book_book_comment_path(@book, book_comment), method: :delete,data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %></td>
+        </tr>
+          <% else %>
+           <tr>
+            <td><%= book_comment.user.name %></td>
+            <td><%= book_comment.comment %></td>
+            <td></td>
+            <td></td>
+           </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="hidden">
+      <%= render 'users/list', user: @user %>
+      <%= render 'books/list', book: @books %>
+    </div>
+
    </div>
   </div>
  </div>

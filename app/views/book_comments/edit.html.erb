@@ -1,0 +1,7 @@
+
+  <h1>Edit Comment</h1>
+
+  <%= form_for [@book, @book_comment] do |f| %>
+  <%= f.text_area :comment, rows: '3', placeholder: "コメント" %>
+  <%= f.submit 'Update' %>
+  <% end %>

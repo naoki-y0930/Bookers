@@ -25,6 +25,20 @@
 body{
   font-size: 16px;
 }
+
+.sign{
+  width: 72%;
+  margin: 0 auto;
+}
+
+.sign_bottom{
+  margin-bottom: 10px;
+}
+
+.home{
+  text-align: center;
+}
+
 .pt-1{
   padding-top:15px;
 }
@@ -63,4 +77,18 @@ ul li{
 footer p{
   text-align: right;
   margin-right: 5%;
+}
+
+@media screen and (min-width: 768px){
+  .hidden{
+    display: none;
+  }
+}
+@media screen and (max-width: 767px){
+  .hidden{
+    display: block !important;
+  }
+  .open{
+    display: none;
+  }
 }
