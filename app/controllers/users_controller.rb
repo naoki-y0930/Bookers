@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  
+
   def index
     @users = User.all
     @user = current_user
@@ -32,9 +34,7 @@ class UsersController < ApplicationController
      end
    end
 
-  # def sign_up
-  #
-  # end
+
 
 private
 def user_params

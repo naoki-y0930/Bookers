@@ -4,11 +4,6 @@ class BooksController < ApplicationController
 
   def fabo
     @book = Book.find(params[:id])
-
-    # @book = Favorite.where(book_id: book.id)
-    #  @user = User.find_by(params[:id])
-    #  @favorites = Favorite.where(user_id: @user.id)
-     # @favorites = favorites
   end
 
   def new
