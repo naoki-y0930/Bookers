@@ -1,15 +1,30 @@
-<% if flash[:notice] %>
-<p><%= flash[:notice] %></p>
-<% end %>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-6 col-md-offset-3 rows">
+     <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+       <% end %>
+       <% if @book.errors.any? %>
+        <h2><%= @book.errors.count %>errors prohibited this obj from being saved:</h2>
+         <ul>
+          <% @book.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+          <% end %>
+         <% end %>
+        </ul>
+       </div>
+      <div class="col-md-3"></div>
+     </div>
+    </div>
 
-<div class="container">
+ <div class="container">
   <div class="row">
-    <div class="col-lg-4 col-sm-4 col-xs-4">
+    <div class="col-lg-4 col-sm-4 open">
       <%= render 'users/list', user: @user %>
       <%= render 'books/list', book: @book %>
     </div>
 
-   <div class="col-lg-8 col-sm-8 col-xs-8">
+   <div class="col-lg-8 col-sm-8">
     <h1>Books</h1>
      <table class="table table-hover">
       <thead>
@@ -18,6 +33,7 @@
           <th>title</th>
           <th>opinion</th>
           <th>comment</th>
+          <td><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></td>
         </tr>
       </thead>
       <tbody>
@@ -27,10 +43,15 @@
         <td><%= link_to book.title, book_path(book) %></td>
         <td><%= book.body %></td>
         <td><%= book.book_comments.count %></td>
+        <td><%= link_to book.favorites.count, fabo_book_path(book) %></td>
        </tr>
       <% end %>
      </tbody>
     </table>
+    <div class="hidden">
+     <%= render 'users/list', user: @user %>
+     <%= render 'books/list', book: @book %>
+    </div>
    </div>
   </div>
  </div>

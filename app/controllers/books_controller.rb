@@ -1,6 +1,16 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
 
+
+  def fabo
+    @book = Book.find(params[:id])
+
+    # @book = Favorite.where(book_id: book.id)
+    #  @user = User.find_by(params[:id])
+    #  @favorites = Favorite.where(user_id: @user.id)
+     # @favorites = favorites
+  end
+
   def new
     @book = Book.new
   end
@@ -12,7 +22,10 @@ class BooksController < ApplicationController
       flash[:notice] = "successfully"
      redirect_to book_path(@book)
    else
-     render action: :new
+     @books = Book.all
+     # @book = Book.new
+     @user = current_user
+     render action: :index
    end
   end
 

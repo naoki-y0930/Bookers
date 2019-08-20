@@ -2,12 +2,12 @@
   <div class="container">
    <div class="row">
 
-    <div class="col-lg-4 col-sm-4 col-xs-4">
+    <div class="col-lg-4 col-sm-4 open">
       <%= render 'users/list', user: @user %>
       <%= render 'books/list', book: @book %>
     </div>
 
-    <div class="col-lg-8 col-sm-8 col-xs-8">
+    <div class="col-lg-8 col-sm-8">
       <h1>Users</h1>
       <table class="table table-hover">
         <thead>
@@ -27,6 +27,10 @@
           </tr>
         </tbody>
        </table>
+       <div class="hidden">
+        <%= render 'users/list', user: @user %>
+        <%= render 'books/list', book: @book %>
+       </div>
       </div>
      </div>
     </div>

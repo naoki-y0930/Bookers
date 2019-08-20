@@ -1,0 +1,25 @@
+  <div class="container">
+   <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+     <span>合計</span><%= @book.favorites.count %> <span>いいね</span>
+      <h1 class="editbook text-primary">ファボしたユーザー</h1>
+       <table class="table table-hover">
+        <thead>
+         <tr>
+          <th>image</th>
+          <th>name</th>
+         </tr>
+        </thead>
+        <tbody>
+        <% @book.favorites.each do |fabo| %>
+         <tr>
+          <td><%= attachment_image_tag fabo.user, :profile_image, :fill, 60, 60, fallback: "no_image.png" %></td>
+          <td><%= fabo.user.name %></td>
+         </tr>
+        <% end %>
+       </tbody>
+      </table>
+     </div>
+    <div class="col-md-2"></div>
+   </div>
+  </div>

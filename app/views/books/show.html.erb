@@ -1,7 +1,13 @@
-  <% if flash[:notice] %>
-   <p><%= flash[:notice] %></p>
-  <% end %>
-
+    <div class="container">
+     <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+       <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+       <% end %>
+      </div>
+     <div class="col-md-3"></div>
+    </div>
+   </div>
   <div class="container">
    <div class="row">
     <div class="col-lg-4 col-sm-4 open">
@@ -36,49 +42,80 @@
       </tr>
      </tbody>
     </table>
-    <% if @book.user == current_user %>
 
-    <% else %>
+   <% if @book.user == current_user %>
+     <% else %>
     <%= form_for [@book, @book_comment] do |f| %>
+     <% if @book_comment.errors.any? %>
+      <h2><%= @book_comment.errors.count %>errors prohibited this obj from being saved:</h2>
+       <ul>
+        <% @book_comment.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+       </ul>
+      <% end %>
+     <% end %>
     <%= f.text_area :comment, rows: '3', placeholder: "コメント" %>
-    <br>
+     <br>
     <%= f.submit "Create Comment", class: "btn btn-primary" %>
-    <% end %>
    <% end %>
-    <br>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>comment</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @book.book_comments.each do |book_comment| %>
-        <% if book_comment.user == current_user %>
+  <% end %>
+
+ <% if @book.favorited_by?(current_user) %>
+  <ul>
+   <li>
+    <%= link_to book_favorites_path(@book), method: :delete do %>
+     <i class="glyphicon glyphicon-heart" style="color: red;"></i>
+   </li>
+   <% end %>
+   <li>
+     <%= link_to "#{@book.favorites.count}いいね" , fabo_book_path(@book) %>
+   </li>
+  </ul>
+ <% else %>
+  <ul>
+   <li>
+    <%= link_to book_favorites_path(@book), method: :post do %>
+     <i class="glyphicon glyphicon-heart"></i>
+   </li>
+   <% end %>
+    <li>
+      <%= link_to "#{@book.favorites.count}いいね", fabo_book_path(@book) %>
+    </li>
+  </ul>
+ <% end %>
+
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @book.book_comments.each do |book_comment| %>
+      <% if book_comment.user == current_user %>
+       <tr>
+        <td><%= book_comment.user.name %></td>
+        <td><%= book_comment.comment %></td>
+        <td><%= link_to 'Edit', edit_book_book_comment_path(@book, book_comment), class: "btn btn-success" %></td>
+        <td><%= link_to 'Destroy', book_book_comment_path(@book, book_comment), method: :delete,data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %></td>
+       </tr>
+      <% else %>
         <tr>
           <td><%= book_comment.user.name %></td>
           <td><%= book_comment.comment %></td>
-          <td><%= link_to 'Edit', edit_book_book_comment_path(@book, book_comment), class: "btn btn-success" %></td>
-          <td><%= link_to 'Destroy', book_book_comment_path(@book, book_comment), method: :delete,data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %></td>
-        </tr>
-          <% else %>
-           <tr>
-            <td><%= book_comment.user.name %></td>
-            <td><%= book_comment.comment %></td>
-            <td></td>
-            <td></td>
-           </tr>
-          <% end %>
+          <td></td>
+          <td></td>
+         </tr>
         <% end %>
+       <% end %>
       </tbody>
-    </table>
+     </table>
 
     <div class="hidden">
       <%= render 'users/list', user: @user %>
       <%= render 'books/list', book: @books %>
+     </div>
     </div>
-
    </div>
   </div>
- </div>
