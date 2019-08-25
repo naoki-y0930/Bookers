@@ -28,6 +28,25 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 50}
 
 
+def self.search(search, num)
+  case num
+  when "1"
+    return User.all unless search
+    User.where('name LIKE ?', "#{search}%")
+  when "2"
+    return User.all unless search
+    User.where('name LIKE ?', "%#{search}")
+  when "3"
+    return User.all unless search
+    User.where('name LIKE ?', "%#{search}%")
+  when "4"
+    return User.all unless search
+    User.where('name LIKE ?', "#{search}")
+  else
+    User.all
+  end
+end
+
          def email_required?
            false
          end

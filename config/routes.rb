@@ -8,12 +8,21 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    collection do
+      get 'search' => 'users#search'
+    end
+    # collection do
+    #   get :search
+    # end
   end
   resources :books do
     resources :book_comments, only: [:create, :edit, :update, :destroy]
     resource :favorites, only: [:create, :destroy]
     member do
       get 'fabo' => 'books#fabo'
+    end
+    collection do
+      get 'search' => 'books#search'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

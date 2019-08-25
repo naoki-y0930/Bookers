@@ -54,9 +54,9 @@
        </ul>
       <% end %>
      <% end %>
-    <%= f.text_area :comment, rows: '3', placeholder: "コメント" %>
+    <%= f.text_area :comment, rows: '3', placeholder: "コメント", class: "rows" %>
      <br>
-    <%= f.submit "Create Comment", class: "btn btn-primary" %>
+    <%= f.submit "Create Comment", class: "btn btn-primary rows" %>
    <% end %>
   <% end %>
 
@@ -66,21 +66,23 @@
     <%= link_to book_favorites_path(@book), method: :delete do %>
      <i class="glyphicon glyphicon-heart" style="color: red;"></i>
    </li>
-   <% end %>
-   <li>
-     <%= link_to "#{@book.favorites.count}いいね" , fabo_book_path(@book) %>
-   </li>
-  </ul>
- <% else %>
-  <ul>
-   <li>
-    <%= link_to book_favorites_path(@book), method: :post do %>
-     <i class="glyphicon glyphicon-heart"></i>
-   </li>
-   <% end %>
+  <% end %>
+   <li><div class="blockspace"></div></li>
     <li>
-      <%= link_to "#{@book.favorites.count}いいね", fabo_book_path(@book) %>
+     <%= link_to "#{@book.favorites.count}いいね" , fabo_book_path(@book) %>
     </li>
+   </ul>
+  <% else %>
+   <ul>
+    <li>
+     <%= link_to book_favorites_path(@book), method: :post do %>
+      <i class="glyphicon glyphicon-heart"></i>
+     </li>
+   <% end %>
+    <li><div class="blockspace"></div></li>
+     <li>
+      <%= link_to "#{@book.favorites.count}いいね", fabo_book_path(@book) %>
+     </li>
   </ul>
  <% end %>
 

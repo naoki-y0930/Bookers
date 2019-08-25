@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
 
+  def search
+    num = params[:num]
+    @search = Book.search(params[:search], (num))
+  end
 
   def fabo
     @book = Book.find(params[:id])

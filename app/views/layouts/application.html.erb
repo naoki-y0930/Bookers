@@ -25,6 +25,13 @@
             				<span class="icon-bar"></span>
               </button>
               <h1 class="navbar-brand">Bookers</h1>
+              <span class="dropdown">
+        <a class="btn glyphicon glyphicon-search dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-item"><%= render 'books/search_book' , search: @search %></div>
+          <div class="dropdown-item"><%= render 'users/search_users', search: @search %></div>
+        </div>
+      </span>
             </div>
               <div class="collapse navbar-collapse" id="navbarEexample">
 

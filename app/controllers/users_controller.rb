@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def search
+    num = params[:num]
+    @search = User.search(params[:search], (num))
+  end
+
+
   def following
     @user = User.find(params[:id])
     # @users = @user.followings
@@ -23,6 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @search = User.search(params[:search])
     #余裕があればページング機能追加する
     # @users = @user.books.page(params[:id]).reverse_order
   end

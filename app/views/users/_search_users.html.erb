@@ -1,0 +1,7 @@
+<h4>user検索</h4>
+<%= form_tag( search_users_path, :method => 'get') do %>
+<%= text_field_tag :search %>
+<%= submit_tag 'Search' %>
+<br>
+<%= select_tag(:num, options_for_select([["前文一致", 1 ], ["後文一致", 2 ], ["部分一致", 3 ], ["全文一致", 4 ]])) %>
+<% end %>

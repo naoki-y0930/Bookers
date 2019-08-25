@@ -1,0 +1,23 @@
+  <div class="container">
+   <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>title</th>
+        <th>opinion</th>
+       </tr>
+      </thead>
+     <tbody>
+      <% @search.each do |search| %>
+       <tr>
+        <td><%= link_to search.title, search %></td>
+        <td><%= search.body %></td>
+       </tr>
+      <% end %>
+     </tbody>
+    </table>
+   </div>
+   <div class="col-md-2"></div>
+  </div>
+ </div>
