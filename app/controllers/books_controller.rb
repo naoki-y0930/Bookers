@@ -17,19 +17,25 @@ class BooksController < ApplicationController
   def create
      @book = Book.new(book_params)
      @book.user_id = current_user.id
+   respond_to do |format|
     if @book.save
       flash[:notice] = "successfully"
-     redirect_to book_path(@book)
-   else
-     @books = Book.all
-     # @book = Book.new
-     @user = current_user
-     render action: :index
+      format.html { redirect_to @user }
+      format.json { render :index, status: :created, location: @user }
+      format.js { @status = "success"}
+    else
+      @books = Book.all
+      @user = current_user
+      format.html { render :index }
+      format.json { render :index, status: :unprocessable_entity }
+      format.js { @status = "fail" }
+      # render action: :index
+     end
+    end
    end
-  end
 
   def index
-     @books = Book.all
+     @books = Book.all.order(id:'DESC')
      @book = Book.new
      @user = current_user
   end

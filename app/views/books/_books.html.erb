@@ -1,0 +1,23 @@
+  <h1>Books</h1>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>title</th>
+        <th>opinion</th>
+        <th>comment</th>
+        <th><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @books.each do |book| %>
+     <tr>
+      <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.png" %></td>
+      <td><%= link_to book.title, book_path(book) %></td>
+      <td><%= book.body %></td>
+      <td><%= book.book_comments.count %></td>
+      <td><%= link_to book.favorites.count, fabo_book_path(book) %></td>
+     </tr>
+    <% end %>
+   </tbody>
+  </table>

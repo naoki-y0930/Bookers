@@ -51,10 +51,6 @@ body{
   margin-top: 50px;
 }
 
-ul li{
-  display: inline-block;
-}
-
 .blockspace{
   width: 50px;
 }
@@ -78,7 +74,9 @@ ul li{
   margin-top: 10px;
 }
 
-
+ul li {
+  display: inline-block;
+}
 
 footer p{
   text-align: right;

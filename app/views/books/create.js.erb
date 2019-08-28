@@ -1,0 +1,7 @@
+  <% if @status == 'success' %>
+   $('#book_title, #book_body').val('');
+   $(".tbody").prepend("<%= j(render("ajax_book", book: @book)) %>");
+   $('#errorbook').text('successfully');
+  <% elsif @status == 'fail' %>
+    $('#errorbook').append("<%= j(render("error", book: @book)) %>");
+  <% end %>
