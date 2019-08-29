@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :books do
     resources :book_comments, only: [:create, :edit, :update, :destroy]
-    resource :favorites, only: [:create, :destroy]
+    # resource :favorites, only: [:create, :destroy]
     member do
       get 'fabo' => 'books#fabo'
     end
@@ -25,5 +25,7 @@ Rails.application.routes.draw do
       get 'search' => 'books#search'
     end
   end
+  post '/favorite/:book_id' => 'favorites#favorite', as: 'favorite'
+  delete '/favorite/:book_id' => 'favorites#unfavorite', as: 'unfavorite'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

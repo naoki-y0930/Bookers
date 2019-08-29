@@ -1,0 +1,15 @@
+  <div class="like-link" id="like-link-<%= book.id %>">
+   <% if current_user.favorites.find_by(book_id: book.id) %>
+    <%= link_to unfavorite_path(book.id), method: :delete, remote: true do %>
+     <div class="btn btn-default glyphicon glyphicon-heart" id="heart-<%= book.id %>">
+      <%= book.favorites.count.to_s %>
+     </div>
+    <% end %>
+   <% else %>
+    <%= link_to favorite_path(book.id), method: :post, remote: true do %>
+     <div class="btn btn-default glyphicon glyphicon-heart-empty" id="heart-<%= book.id %>">
+      <%= book.favorites.count.to_s %>
+     </div>
+    <% end %>
+   <% end %>
+  </div>
